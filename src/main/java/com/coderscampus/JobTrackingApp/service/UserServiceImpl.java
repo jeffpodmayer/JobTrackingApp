@@ -30,6 +30,8 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
+
     
     @Override
     public UserDetailsService userDetailsService() {
@@ -87,7 +89,6 @@ public class UserServiceImpl implements UserService {
     
     public User registerUser(User user) {
 		if (userRepository.findByEmail(user.getEmail()).isPresent()) {
-
 			return null;
 		}
 		return userRepository.save(user);

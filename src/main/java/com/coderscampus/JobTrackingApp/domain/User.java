@@ -3,14 +3,12 @@ package com.coderscampus.JobTrackingApp.domain;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "users")
-
 public class User implements UserDetails {
     private static final long serialVersionUID = 2025389852147750927L;
     @Id
@@ -23,6 +21,8 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnoreProperties("user")
     private List<Authority> authorities = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<Application> applications = new ArrayList<>();
     
     /*
      * enable if you want to have the confirm password to be checked in the back end + their corresponding getters and setters
@@ -103,6 +103,7 @@ public class User implements UserDetails {
         this.password = password;
         return this;
     }
+
     
     public void setId(Integer id) {
         this.id = id;
