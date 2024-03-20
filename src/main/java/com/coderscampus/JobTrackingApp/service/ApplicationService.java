@@ -20,7 +20,7 @@ public class ApplicationService {
     public Application save(Application application, Long userId) {
         User user = userService.findById(userId);
         application.setUser(user);
-        user.getApplications().add(application);
+      //  user.getApplications().add(application);
         return applicationRepo.save(application);
     }
 }

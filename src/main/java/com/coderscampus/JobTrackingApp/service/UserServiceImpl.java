@@ -53,7 +53,12 @@ public class UserServiceImpl implements UserService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
-    
+
+    @Override
+    public User findById(Long userId) {
+        return null;
+    }
+
     @Secured("ROLE_ADMIN")
     @Transactional // This annotation ensures that changes are committed to the database
     public void elevateUserToAdmin(Integer userId) {
