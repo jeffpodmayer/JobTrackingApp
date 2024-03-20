@@ -19,12 +19,23 @@ public class Application {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    @Enumerated(EnumType.STRING)
+    @Column(name="status")
+    private status status;
     private enum status{
         APPLIED,
         FOLLOWED_UP,
         INTERVIEW,
         REJECTED,
         JOB_OFFER
+    }
+
+    public Application.status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Application.status status) {
+        this.status = status;
     }
 
     public User getUser() {
