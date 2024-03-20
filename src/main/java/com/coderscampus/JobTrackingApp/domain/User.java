@@ -23,7 +23,8 @@ public class User implements UserDetails {
     private List<Authority> authorities = new ArrayList<>();
     @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Application> applications = new ArrayList<>();
-    
+
+
     /*
      * enable if you want to have the confirm password to be checked in the back end + their corresponding getters and setters
      * private String confirmPassword;
@@ -138,4 +139,11 @@ public class User implements UserDetails {
         return this;
     }
 
+    public List<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
+    }
 }
