@@ -9,12 +9,12 @@ public class ErrorController {
 	
 	@GetMapping("/error")
 	public String getErrorMessage () {
-		return "error";
+		return "redirect:/error";
 	}
 	
 	@GetMapping("/userExists")
 	public String getUserExistsMessage () {
-		return "userExists";
+		return "redirect:/signin";
 	}
 	
 
