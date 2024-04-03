@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class UserController {
 
-    @GetMapping("/home")
+    @GetMapping("/home/{userId}")
     public String getSuccessMessage () {
         return "home/home";
     }
