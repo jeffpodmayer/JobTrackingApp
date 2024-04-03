@@ -26,16 +26,15 @@ public class ApplicationController {
     }
 
     @GetMapping("/createApplication/{userId}")
-    public String createApplication(ModelMap model) {
-        model.put("application", new Application());
+    public String getCreateApplication(ModelMap model) {
+        model.addAttribute("app", new Application());
         return "application/create-application";
     }
 
     @PostMapping("/createApplication/{userId}")
-    public String createApplication(@PathVariable Long userId, Application application) {
+    public String postCreateApplication(@PathVariable Integer userId, Application application) {
 //        System.out.println(application.getAppDate());
         applicationService.save(application, userId);
-
         return "redirect:/home/" + userId;
     }
 }

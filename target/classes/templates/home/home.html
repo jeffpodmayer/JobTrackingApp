@@ -2,9 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Welcome!</title>
 </head>
 <body>
-<h1>Home Page</h1>
+<h1>Welcome [[${user.firstName}]]</h1>
+
+<div th:if="${#lists.size(apps) > 0}">
+    <div th:each="app : ${apps}">
+        <span th:text="${app.company}"></span>
+    </div>
+</div>
+
+<form th:action="@{/createApplication/{userId} (userId=${user.id})}" method="get">
+    <button type="submit">Create New Application</button>
+</form>
+
+<!--<a method="get" th:href="@{/users}">Back</a>-->
+<!--<form method="post" th:action="@{/users/{userId}/account (userId=${user.userId})}">-->
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+
 </body>
 </html>

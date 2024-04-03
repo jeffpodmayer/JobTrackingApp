@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class ApplicationService {
     private final ApplicationRepository applicationRepo;
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @Autowired
-    public ApplicationService(ApplicationRepository applicationRepo, UserService userService) {
+    public ApplicationService(ApplicationRepository applicationRepo, UserServiceImpl userService) {
         this.applicationRepo = applicationRepo;
         this.userService = userService;
     }
 
-    public Application save(Application application, Long userId) {
-        User user = userService.findById(userId);
+    public Application save(Application application, Integer userId) {
+        User user = userService.findUserById(userId).orElse(null);
         application.setUser(user);
         user.getApplications().add(application);
         return applicationRepo.save(application);

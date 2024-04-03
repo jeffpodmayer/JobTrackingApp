@@ -40,9 +40,12 @@ public class RegistrationController {
 		this.passwordEncoder = passwordEncoder;
 	}
 
+	@GetMapping("")
+	public String redirectToRegister() {
+		return "redirect:/register";
+	}
 
-
-	@GetMapping(value= {"","/register"})
+	@GetMapping("/register")
 	public String getRegistration (ModelMap model) {
 		model.addAttribute("user", new User());
 		return "registration";
