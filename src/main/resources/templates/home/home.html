@@ -6,13 +6,24 @@
 </head>
 <body>
 <h1>Welcome [[${user.firstName}]]</h1>
-
 <div th:if="${#lists.size(apps) > 0}">
-    <div th:each="app : ${apps}">
-        <span th:text="${app.company}"></span>
-    </div>
+    <h2>Applications</h2>
+    <table>
+        <tr>
+            <th>Company</th>
+            <th>Job Title</th>
+            <th>Application Date</th>
+            <th>Status</th>
+<!--            <th>Next Action</th>-->
+        </tr>
+        <tr method="get" th:each="app : ${apps}">
+            <td th:text="${app.company}"></td>
+            <td th:text="${app.jobTitle}"></td>
+            <td th:text="${app.appDate}"></td>
+            <td th:text="${app.status}"></td>
+        </tr>
+    </table>
 </div>
-
 <form th:action="@{/createApplication/{userId} (userId=${user.id})}" method="get">
     <button type="submit">Create New Application</button>
 </form>
