@@ -5,10 +5,7 @@ import com.coderscampus.JobTrackingApp.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/applications")
@@ -29,7 +26,7 @@ public class ApplicationController {
 
     @PostMapping("/createApplication/{userId}")
     public String postCreateApplication(@PathVariable Integer userId, Application application) {
-        applicationService.save(application, userId);
+        applicationService.saveCreateApplication(application, userId);
         return "redirect:/home/" + userId;
     }
 
@@ -40,8 +37,11 @@ public class ApplicationController {
         return "application/create-application";
     }
 
-    @PostMapping(/{appId})
-    public String postUpdateApp(@PathVariable Long appId) {
-        
+    @PostMapping("/{appId}")
+    public String postUpdateApp(@ModelAttribute("application") Application currentApp, @PathVariable Long appId) {
+        Application application = applicationService.findById(app.getAppId());
+//        applicationService.updateAppInfo(app, application);
+        applicationService.save(application);
+        return "redirect:/home/" +  application.getUser().getId();
     }
 }

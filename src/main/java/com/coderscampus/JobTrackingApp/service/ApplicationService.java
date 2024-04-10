@@ -17,14 +17,22 @@ public class ApplicationService {
         this.userService = userService;
     }
 
-    public Application save(Application application, Integer userId) {
+    public Application saveCreateApplication(Application application, Integer userId) {
         User user = userService.findUserById(userId).orElse(null);
         application.setUser(user);
         user.getApplications().add(application);
         return applicationRepo.save(application);
     }
 
+    public Application save(Application application){
+        return applicationRepo.save(application);
+    }
     public Application findById(Long appId) {
         return applicationRepo.findById(appId).orElse(null);
+    }
+
+    public void updateAppInfo(Application app, Application application) {
+//        application.setCompany(app.getCompany());
+//        application.getAppDate()
     }
 }

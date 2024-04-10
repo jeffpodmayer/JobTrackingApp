@@ -21,7 +21,7 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnoreProperties("user")
     private List<Authority> authorities = new ArrayList<>();
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private List<Application> applications = new ArrayList<>();
 
 
