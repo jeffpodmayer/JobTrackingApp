@@ -20,8 +20,16 @@
         <input type="text" th:field="${app.jobTitle}"/>
     </div>
     <div>
+        <select th:field="*{app.status}">
+            <option th:each="status : ${T(com.coderscampus.JobTrackingApp.domain.Application.status).values()}"
+                    th:value="${status}" th:text="${status}">
+            </option>
+        </select>
+    </div>
+    <div>
         <input type="submit" value="Create Application"/>
     </div>
+
 </form>
 
 </body>

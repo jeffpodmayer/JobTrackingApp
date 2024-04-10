@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome!</title>
+    <script src="https://kit.fontawesome.com/0fe1471627.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <h1>Welcome [[${user.firstName}]]</h1>
@@ -14,17 +15,20 @@
             <th>Job Title</th>
             <th>Application Date</th>
             <th>Status</th>
-<!--            <th>Next Action</th>-->
+            <th>Edit</th>
+            <!--            <th>Next Action</th>-->
         </tr>
-        <tr method="get" th:each="app : ${apps}">
-            <td th:text="${app.company}"></td>
-            <td th:text="${app.jobTitle}"></td>
-            <td th:text="${app.appDate}"></td>
-            <td th:text="${app.status}"></td>
-        </tr>
+
+            <tr method="get" th:each="app : ${apps}">
+                <td th:text="${app.company}"></td>
+                <td th:text="${app.jobTitle}"></td>
+                <td th:text="${app.appDate}"></td>
+                <td th:text="${app.status}"></td>
+                <td><a th:href="@{/applications/{appId} (appId=${app.appId})}"><i class="fa-solid fa-square-pen"></i></a></td>
+            </tr>
     </table>
 </div>
-<form th:action="@{/createApplication/{userId} (userId=${user.id})}" method="get">
+<form th:action="@{/applications/createApplication/{userId} (userId=${user.id})}" method="get">
     <button type="submit">Create New Application</button>
 </form>
 

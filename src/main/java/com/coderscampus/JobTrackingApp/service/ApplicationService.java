@@ -23,4 +23,8 @@ public class ApplicationService {
         user.getApplications().add(application);
         return applicationRepo.save(application);
     }
+
+    public Application findById(Long appId) {
+        return applicationRepo.findById(appId).orElse(null);
+    }
 }
